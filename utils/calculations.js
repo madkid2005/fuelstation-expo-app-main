@@ -87,7 +87,11 @@ export const performCalculations = (data) => {
   const illegalShortageGas = Math.abs(allowableShortageGas - shortageOrSurplusGas);
   const girFuel1 = totalMechanicalSalesFuel * 0.0045;
 
-  const girFuel = shortageOrSurplusFuel < 0 ? Math.abs(girFuel1 - shortageOrSurplusFuel) : 0;
+  const Moadele =  Math.abs(shortageOrSurplusFuel) - girFuel1;
+  
+  const girmojaze = shortageOrSurplusFuel > 0 ? 0 : Moadele ;
+
+  const girFuel = shortageOrSurplusFuel < 0 ? Math.abs( shortageOrSurplusFuel - girFuel1) : 0;
 
   const vaziatFuel = shortageOrSurplusFuel < 0 ? "کسری" : "سرک";
   const vaziatGaz = shortageOrSurplusGas < 0 ? "کسری" : "سرک";
@@ -143,5 +147,6 @@ export const performCalculations = (data) => {
     illegalShortageGas,
     vaziatGaz,
     vaziatFuel,
+    girmojaze,
   };
 };

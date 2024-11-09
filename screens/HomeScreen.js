@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Button, StyleSheet, Text, Animated, Image, Alert } from 'react-native';
+import { View, Button, StyleSheet, Text, Animated, Image, Alert , TouchableOpacity ,Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { nanoid } from 'nanoid';
 
@@ -63,6 +63,9 @@ const HomeScreen = ({ navigation }) => {
       </View>
     );
   }
+  const handlePress = () => {
+    Linking.openURL('https://www.instagram.com/appino_team/profilecard/?igsh=NjBmdmZtZDh4djBv');
+  };
 
   return (
     <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
@@ -76,6 +79,15 @@ const HomeScreen = ({ navigation }) => {
           color="blue"
         />
       </View>
+      <View style={styles.container1}>
+
+      <TouchableOpacity onPress={handlePress} style={styles.footer}>
+        <Text style={styles.madkidtext}>
+          Developers : Appino{"\n"}instagram : Appino_team
+        </Text>
+      </TouchableOpacity>    
+      </View>
+
     </Animated.View>
   );
 };
@@ -108,6 +120,20 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 10,
     paddingVertical: 5,
+  },
+  container1: {
+    position: 'absolute', // مکان ثابت در پایین صفحه
+    bottom: 20,           // فاصله از پایین صفحه
+    left: 0,
+    right: 0,
+    alignItems: 'center', // متن را وسط صفحه از نظر افقی قرار می‌دهد
+  },
+  
+  madkidtext: {
+    color: 'white',
+    opacity: 0.4, // کاهش شفافیت
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
 
