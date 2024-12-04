@@ -146,20 +146,20 @@ const GasResults = ({ results }) => {
                 `).join('') : ''}
  <div class="totals">
         <div class="row total-row">
-          <div class="cell"><p class="cell-text">کل فروش مکانیکی بنزین:</p></div>
+          <div class="cell"><p class="cell-text">کل فروش مکانیکی نفتگاز:</p></div>
           <div class="cell"><p class="cell-text">${results.totalMechanicalSalesGas}</p></div>
         </div>
         <div class="row total-row">
-          <div class="cell"><p class="cell-text">کل فروش الکترونیکی بنزین طبق گزارش سامانه:</p></div>
+          <div class="cell"><p class="cell-text">کل فروش الکترونیکی نفتگاز طبق گزارش سامانه:</p></div>
           <div class="cell"><p class="cell-text">${results.electrogazJV}</p></div>
         </div>
         <div class="row total-row">
-          <div class="cell"><p class="cell-text">مقدار سرک / کسری بنزین:</p></div>
+          <div class="cell"><p class="cell-text">مقدار سرک / کسری نفتگاز:</p></div>
           <div class="cell"><p class="cell-text">${results.shortageOrSurplusGas} ${results.vaziatGaz}</p></div>
         </div>
         
         <div class="row total-row">
-          <div class="cell"><p class="cell-text">مقدار مغایرت مکانیکی و الکترونیکی بنزین:</p></div>
+          <div class="cell"><p class="cell-text">مقدار مغایرت مکانیکی و الکترونیکی نفتگاز:</p></div>
           <div class="cell"><p class="cell-text">${results.HG}</p></div>
         </div>
       </div>
