@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   Button,
+  I18nManager,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
@@ -16,6 +17,8 @@ import JalaliCalendar from './JalaliCalendar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Import MaterialCommunityIcons
 
 const InputForm = ({ onCalculate }) => {
+  I18nManager.forceRTL(true);
+
   const [fuelname, setFuelName] = useState('');
   const [startDate, setStartDate] = useState(null);
   

@@ -20,6 +20,7 @@ export const performCalculations = (data) => {
     formattedTime,
   } = data;
 
+
   const formattedDateJV = formattedDate;
   const formattedTimeJV = formattedTime;
 
@@ -52,22 +53,28 @@ export const performCalculations = (data) => {
   // کل فروش نازل ها
   const totalMechanicalSalesFuel = mechanicalSalesPerNozzleFuel.reduce((total, sale) => total + sale, 0);
   const totalMechanicalSalesGas = mechanicalSalesPerNozzleGas.reduce((total, sale) => total + sale, 0);
+  
   // جمع مخازن
   const finalFuelQuantity = tanksFuel.reduce((total, tank) => total + parseFloat(tank.endQuantity), 0);
   const finalGasQuantity = tanksGas.reduce((total, tank) => total + parseFloat(tank.endQuantity), 0);
+  
   // رسیده + ابتدا دوره
   const CF = receivedFuelJV + allfuels;
   const CG = receivedGazJV + allgazs;
+  
   // خارج شده
   const DF = CF - finalFuelQuantity;
   const DG = CG - finalGasQuantity;
+  
   // مکانیکی - خارج شده
   const EF = totalMechanicalSalesFuel - DF;
   const EG = totalMechanicalSalesGas - DG;
+  
   // تفاوت مکانیکی با الکترنیکی
   const HG = electrogazJV - totalMechanicalSalesGas;
   const HF = electrofuelJV - totalMechanicalSalesFuel;
 
+  // calculations 
   const totalFuel = parseFloat(allfuel) + parseFloat(receivedFuel);
   const totalGas = parseFloat(allgaz) + parseFloat(receivedGas);
 
@@ -77,22 +84,31 @@ export const performCalculations = (data) => {
   const afterSalesFuel = totalFuel - totalMechanicalSalesFuel;
   const afterSalesGas = totalGas - totalMechanicalSalesGas;
 
+  // مقدار سرک / کسری :
   const shortageOrSurplusFuel = finalFuelQuantity - afterSalesFuel;
   const shortageOrSurplusGas = finalGasQuantity - afterSalesGas;
- 
+
+  //چقدر کسری مجاز است ؟
   const allowableShortageFuel = totalMechanicalSalesFuel * 0.0045;
   const illegalShortageFuel = Math.abs(allowableShortageFuel - shortageOrSurplusFuel);
 
-  const allowableShortageGas = totalMechanicalSalesGas * 0.0045;
-  const illegalShortageGas = Math.abs(allowableShortageGas - shortageOrSurplusGas);
   const girFuel1 = totalMechanicalSalesFuel * 0.0045;
-
-  const Moadele =  Math.abs(shortageOrSurplusFuel) - girFuel1;
   
-  const girmojaze = shortageOrSurplusFuel > 0 ? 0 : Moadele ;
+  // کسری غیر مجاز بنزین:
+  const Moadele =  Math.abs(shortageOrSurplusFuel) - allowableShortageFuel;
+  const girmojaze = Math.trunc(shortageOrSurplusFuel) > 0 ? 0 : Math.trunc(Moadele) ;
+  const girFuel = shortageOrSurplusFuel < 0 ? Math.abs( shortageOrSurplusFuel - allowableShortageFuel) : 0;
+  const namayeshQ = girFuel > allowableShortageFuel ? girFuel : 0;
+  const namayeshkasri = shortageOrSurplusFuel < girmojaze ? 0 :girmojaze;
+  console.log( "kasri gir mojaz", girmojaze)
+  console.log("giiir" , girFuel)
+  console.log(Moadele)
+  console.log(namayeshQ)
+  console.log(allowableShortageFuel)
+  console.log(shortageOrSurplusFuel)
 
-  const girFuel = shortageOrSurplusFuel < 0 ? Math.abs( shortageOrSurplusFuel - girFuel1) : 0;
 
+  //سرک / کسری
   const vaziatFuel = shortageOrSurplusFuel < 0 ? "کسری" : "سرک";
   const vaziatGaz = shortageOrSurplusGas < 0 ? "کسری" : "سرک";
 
@@ -101,14 +117,15 @@ export const performCalculations = (data) => {
     formattedTimeJV,
     allfuels,
     MadkidYG,
-    MadkidXG,
     girFuel1,
+    MadkidXG,
     MadkidZG,
     MadkidZF,
     MadkidYF,
     tanksGasG,
     tanksFuelF,
     MadkidXF,
+    namayeshkasri,
     startDateJS,
     allgazs,
     girFuel,
@@ -143,10 +160,9 @@ export const performCalculations = (data) => {
     shortageOrSurplusGas,
     allowableShortageFuel,
     illegalShortageFuel,
-    allowableShortageGas,
-    illegalShortageGas,
     vaziatGaz,
     vaziatFuel,
     girmojaze,
+    namayeshQ,
   };
 };

@@ -170,7 +170,7 @@ const FuelResults = ({ results }) => {
         </div>
         <div class="row total-row">
           <div class="cell"><p class="cell-text">کسری غیر مجاز بنزین:</p></div>
-          <div class="cell"><p class="cell-text">${results.girmojaze}</p></div>
+          <div class="cell"><p class="cell-text">${results.namayeshkasri}</p></div>
         </div>
         <div class="row total-row">
           <div class="cell"><p class="cell-text">مقدار مغایرت مکانیکی و الکترونیکی بنزین:</p></div>
@@ -241,7 +241,7 @@ const FuelResults = ({ results }) => {
           
           </View>
           <View style={styles.row}>
-            <View style={styles.cell}><Text style={styles.cellText}>کسری غیر مجاز بنزین: {results.girmojaze}</Text></View>
+            <View style={styles.cell}><Text style={styles.cellText}>کسری غیر مجاز بنزین: {results.namayeshkasri}</Text></View>
           </View>
           <View style={styles.row}>
             <View style={styles.cell}><Text style={styles.cellText}>مقدار مغایرت مکانیکی و الکترونیکی بنزین: {results.HF}</Text></View>

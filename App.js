@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View, Image, StyleSheet, Text, TextInput, Button } from 'react-native';
+import { I18nManager, View, Image, StyleSheet, Text, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import HomeScreen from './screens/HomeScreen';
@@ -15,6 +15,8 @@ global.Buffer = Buffer;
 const Stack = createStackNavigator();
 
 const PasscodeScreen = ({ onPasscodeSuccess }) => {
+  I18nManager.forceRTL(true);
+
   const [passcode, setPasscode] = useState('');
   const correctPasscode = 'JZAbL2KdYiGm0ECC';
 
@@ -114,6 +116,7 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+ 
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
