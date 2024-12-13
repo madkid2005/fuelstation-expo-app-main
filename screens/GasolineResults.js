@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import {I18nManager, View, Text, StyleSheet, ScrollView, Button } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as Print from 'expo-print';
 import { Asset } from 'expo-asset';
@@ -9,7 +9,7 @@ const FuelResults = ({ results }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [logoURL, setLogoURL] = useState('https://s8.uupload.ir/files/logo_z2b9.png'); // Set your logo URL here
 
-
+  I18nManager.forceRTL(true);
   const handleButtonClick = () => {
     const now = moment();
     const formattedTime = now.format('HH:mm:ss');
@@ -170,7 +170,7 @@ const FuelResults = ({ results }) => {
         </div>
         <div class="row total-row">
           <div class="cell"><p class="cell-text">کسری غیر مجاز بنزین:</p></div>
-          <div class="cell"><p class="cell-text">${results.namayeshkasri}</p></div>
+          <div class="cell"><p class="cell-text">${results.if_girmojaz}</p></div>
         </div>
         <div class="row total-row">
           <div class="cell"><p class="cell-text">مقدار مغایرت مکانیکی و الکترونیکی بنزین:</p></div>
@@ -241,7 +241,7 @@ const FuelResults = ({ results }) => {
           
           </View>
           <View style={styles.row}>
-            <View style={styles.cell}><Text style={styles.cellText}>کسری غیر مجاز بنزین: {results.namayeshkasri}</Text></View>
+            <View style={styles.cell}><Text style={styles.cellText}>کسری غیر مجاز بنزین: {results.if_girmojaz}</Text></View>
           </View>
           <View style={styles.row}>
             <View style={styles.cell}><Text style={styles.cellText}>مقدار مغایرت مکانیکی و الکترونیکی بنزین: {results.HF}</Text></View>
@@ -260,6 +260,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     backgroundColor: '#fff',
+    direction:"rtl",
+
   },
   buttonContainer: {
     padding: 20,
@@ -280,6 +282,8 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     padding: 10,
   },
+ 
+
   sectionHeader: {
     fontSize: 18,
     fontWeight: 'bold',

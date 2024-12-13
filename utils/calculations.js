@@ -99,7 +99,15 @@ export const performCalculations = (data) => {
   const girmojaze = Math.trunc(shortageOrSurplusFuel) > 0 ? 0 : Math.trunc(Moadele) ;
   const girFuel = shortageOrSurplusFuel < 0 ? Math.abs( shortageOrSurplusFuel - allowableShortageFuel) : 0;
   const namayeshQ = girFuel > allowableShortageFuel ? girFuel : 0;
-  const namayeshkasri = shortageOrSurplusFuel < girmojaze ? 0 :girmojaze;
+  // const namayeshkasri = shortageOrSurplusFuel < girmojaze ? 0 :girmojaze;
+  var mojaz = totalMechanicalSalesFuel * 0.0045 ;
+  var kasrigirmojaz =  Math.abs(shortageOrSurplusFuel)  - Math.abs(mojaz) ;
+
+  const namayeshkasri =  kasrigirmojaz > mojaz  ? kasrigirmojaz : 0  ;
+  var if_girmojaz = shortageOrSurplusFuel > 0 ? 0  : namayeshkasri ;
+  console.log( "kasrigirmojaz", kasrigirmojaz)
+  console.log( "mojaz", mojaz)
+  console.log( "namayeshkasri", namayeshkasri)
   console.log( "kasri gir mojaz", girmojaze)
   console.log("giiir" , girFuel)
   console.log(Moadele)
@@ -107,6 +115,7 @@ export const performCalculations = (data) => {
   console.log(allowableShortageFuel)
   console.log(shortageOrSurplusFuel)
 
+  // kasri gir mojaz 
 
   //سرک / کسری
   const vaziatFuel = shortageOrSurplusFuel < 0 ? "کسری" : "سرک";
@@ -138,6 +147,7 @@ export const performCalculations = (data) => {
     EF,
     EG,
     endDateJS,
+    if_girmojaz,
     names,
     electrofuelJV,
     electrogazJV,

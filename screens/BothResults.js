@@ -163,7 +163,7 @@ const BothResults = ({ results }) => {
         </div>
         <div class="row total-row">
           <div class="cell"><p class="cell-text">کسری غیر مجاز بنزین:</p></div>
-          <div class="cell"><p class="cell-text">${results.namayeshkasri}</p></div>
+          <div class="cell"><p class="cell-text">${results.if_girmojaz}</p></div>
         </div>
         <div class="row total-row">
           <div class="cell"><p class="cell-text">مقدار مغایرت مکانیکی و الکترونیکی بنزین:</p></div>
@@ -270,7 +270,7 @@ const BothResults = ({ results }) => {
         <View style={styles.cell}><Text style={styles.cellText}>کل فروش مکانیکی بنزین: {results.totalMechanicalSalesFuel}</Text></View>
         <View style={styles.cell}><Text style={styles.cellText}>کل فروش الکترونیکی بنزین طبق گزارش سامانه: {results.electrofuelJV}</Text></View>
         <View style={styles.cell}><Text style={styles.cellText}>مقدار سرک / کسری بنزین: {results.shortageOrSurplusFuel} {results.vaziatFuel}</Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}>کسری غیر مجاز بنزین: {results.namayeshkasri}</Text></View>
+        <View style={styles.cell}><Text style={styles.cellText}>کسری غیر مجاز بنزین: {results.if_girmojaz}</Text></View>
         <View style={styles.cell}><Text style={styles.cellText}>مقدار مغایرت مکانیکی و الکترونیکی بنزین: {results.HF}</Text></View>
         </View>
       </View>
@@ -318,6 +318,8 @@ const styles = StyleSheet.create({
       flexGrow: 1,
       padding: 20,
       backgroundColor: '#fff',
+    direction:"rtl",
+
     },
     buttonContainer: {
       padding: 20,

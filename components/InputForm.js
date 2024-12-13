@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState , useRef  } from 'react';
 import {
   View,
   Text,
   TextInput,
-  Button,
+  TouchableOpacity,
   I18nManager,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native';
 import { ThemeContext } from '../context/ThemeContext';
 import moment from 'moment-jalaali';
@@ -40,7 +40,6 @@ const InputForm = ({ onCalculate }) => {
   const [numTanksFuel, setNumTanksFuel] = useState('');
   const [numTanksGas, setNumTanksGas] = useState('');
   const [fuelType, setFuelType] = useState(null);
-  const [step, setStep] = useState(0); // Ensure step starts at 0 or a valid index
 
   const { theme } = useContext(ThemeContext);
 
@@ -94,8 +93,8 @@ const InputForm = ({ onCalculate }) => {
     setTanksGas(newTanksGas);
   };
 
+  const [step, setStep] = React.useState(0);
   const steps = [
-   
     [
       {
         label: 'نام جایگاه',
@@ -249,7 +248,7 @@ const InputForm = ({ onCalculate }) => {
         component: (
           <View key={index}>
             <TextInput
-              style={styles.input}
+              style={styles.input }
               value={tank.endQuantity}
               placeholder=""
               onChangeText={value => updateTankFuel(index, value)}
@@ -298,7 +297,8 @@ const InputForm = ({ onCalculate }) => {
               keyboardType="numeric"
             />
             <TextInput
-              style={styles.input}
+              style={[styles.input , { backgroundColor: 'lightblue'  }]}
+
               value={nozzle.result}
               placeholder="نتیجه"
               editable={false}
@@ -326,7 +326,7 @@ const InputForm = ({ onCalculate }) => {
               keyboardType="numeric"
             />
             <TextInput
-              style={styles.input}
+              style={[styles.input , { backgroundColor: 'lightblue'  }]}
               value={nozzle.result}
               placeholder="نتیجه"
 
@@ -381,13 +381,18 @@ const InputForm = ({ onCalculate }) => {
         </View>
       ));
   };
+  const inputRefs = useRef([]);
 
   const handleNext = () => {
     if (step < steps.length - 1) {
       setStep(step + 1);
+      inputRefs.current[step + 1]?.focus();
     } else {
       handleSubmit();
+      Keyboard.dismiss();
     }
+    Keyboard.dismiss();
+
   };
 
   const handlePrev = () => {
@@ -445,6 +450,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    direction:"rtl",
+
   },
   scrollContainer: {
     flexGrow: 1,

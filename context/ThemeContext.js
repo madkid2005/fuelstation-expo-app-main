@@ -8,10 +8,12 @@ export const themes = {
     buttonText: '#ff3333',
     headerBackground: '#ffffff',
     headerText: '#000000',
+    rtl: true,
   },
   dark: {
     background: '#121212',
     text: '#ffffff',
+    rtl: true,
     buttonBackground: 'blue',
     buttonText: '#000000',
     headerBackground: '#1e1e1e',
